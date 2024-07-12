@@ -24,6 +24,7 @@ func authRoutes(r *gin.Engine) {
 	{
 		authGroup.POST("/sign-up", controllers.SignUp)
 		authGroup.POST("/sign-in", controllers.SignIn)
+		authGroup.POST("/reset-password", controllers.ResetPassword)
 	}
 }
 func userRoutes(r *gin.Engine) {
