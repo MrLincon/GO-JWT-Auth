@@ -1,24 +1,36 @@
-# Sign Up
+# API Documentation
 
-Create a new user.
+This document outlines the endpoints for user authentication and data retrieval.
 
-**Endpoint**: `auth/sign-up`
+## Table of Contents
+1. [Authentication](#authentication)
+    - [Sign Up](#sign-up)
+    - [Sign In](#sign-in)
+    - [Send OTP](#send-otp)
+    - [Reset Password](#reset-password)
+2. [User Data](#user-data)
+    - [Fetch User Data](#fetch-user-data)
 
-**Method**: `POST`
+## Authentication
 
-## Headers
+### Sign Up
 
-- `Content-Type: application/json`
+Create a new user account.
 
-## Payload
+- **Endpoint**: `/auth/sign-up`
+- **Method**: `POST`
+- **Headers**:
+    - `Content-Type: application/json`
+
+#### Request Body
 
 ```json
 {
-    "email": "abc@gmail.com",
-    "password": "123456789"
+  "email": "abc@gmail.com",
+  "password": "123456789"
 }
 ```
-## Response
+#### Response
 
 ```json
 {
@@ -31,19 +43,16 @@ Create a new user.
 }
 ```
 ---
-# Sign In
+### Sign In
 
 Sign in existing user.
 
-**Endpoint**: `auth/sign-in`
+- **Endpoint**: `auth/sign-in`
+- **Method**: `POST`
+- **Headers**:
+    - `Content-Type: application/json`
 
-**Method**: `POST`
-
-## Headers
-
-- `Content-Type: application/json`
-
-## Payload
+#### Request Body
 
 ```json
 {
@@ -51,7 +60,7 @@ Sign in existing user.
     "password": "123456789"
 }
 ```
-## Response
+#### Response
 
 ```json
 {
@@ -64,20 +73,69 @@ Sign in existing user.
 }
 ```
 ---
-# Fetch User Data
+
+### Send OTP
+
+Send otp to reset password.
+
+- **Endpoint**: `auth/send-otp`
+- **Method**: `POST`
+- **Headers**:
+    - `Content-Type: application/json`
+
+#### Request Body
+
+```json
+{
+    "email": "abc@gmail.com"
+}
+```
+#### Response
+
+```json
+{
+  "message": "Otp sent successfully"
+}
+```
+---
+### Reset Password
+
+Verify otp and set new password to reset password.
+
+- **Endpoint**: `auth/reset-passeord`
+- **Method**: `POST`
+- **Headers**:
+    - `Content-Type: application/json`
+
+#### Request Body
+
+```json
+{
+    "email": "abc@gmail.com",
+    "otp": "1234",
+    "password": "123456789"
+}
+```
+#### Response
+
+```json
+{
+  "message": "Password reset successful"
+}
+```
+
+---
+### Fetch User Data
 
 Fetch user data.
 
-**Endpoint**: `user/fetch-user`
+- **Endpoint**: `user/fetch-user`
+- **Method**: `GET`
+- **Headers**:
+    - `Content-Type: application/json`
+    - `Authorization: Bearer {token}`
 
-**Method**: `GET`
-
-## Headers
-
-- `Content-Type: application/json`
-- `Authorization: Bearer {token}`
-
-## Response
+#### Response
 
 ```json
 {
